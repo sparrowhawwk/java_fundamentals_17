@@ -71,7 +71,7 @@ public class CalcEngine {
         System.out.println(output);
     }
 
-    static double execute(double leftVal, double rightVal, char opCode) {
+    private static double execute(double leftVal, double rightVal, char opCode) {
         double result = 0.0d;
         switch (opCode) {
             case 'a':
@@ -94,11 +94,11 @@ public class CalcEngine {
         return result;
     }
 
-    static char getOpCodeFromString(String operation) {
+    private static char getOpCodeFromString(String operation) {
         return operation.charAt(0);
     }
 
-    static double getDoubleFromString(String numberName) {
+    private static double getDoubleFromString(String numberName) {
         String[] numberNames = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         double d = 0.0d;
         for (int i = 0; i < numberNames.length; i++) {
@@ -110,7 +110,7 @@ public class CalcEngine {
         return d;
     }
 
-    static char getSymbolFromOpCode(char opCode) {
+    private static char getSymbolFromOpCode(char opCode) {
         char[] opCodes = {'m', 'd', 'a', 's'};
         char[] symbols = {'*', '/', '+', '-'};
         char symbol = ' ';
