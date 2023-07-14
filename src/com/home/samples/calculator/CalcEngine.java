@@ -21,16 +21,23 @@ public class CalcEngine {
     }
 
     private static void defaultOperation() {
-        double[] leftValues = {100.0d, 50.0d, 25.0d, 75.0d};
-        double[] rightValues = {50.0d, 34.0d, 15.0d, 15.0d};
-        char[] opCodes = {'m', 'd', 'a', 's'};
-        double[] results = new double[opCodes.length];
-        for (int i = 0; i < opCodes.length; i++) {
-            results[i] = execute(leftValues[i], rightValues[i], opCodes[i]);
+        MathEquation[] equations = new MathEquation[4];
+        equations[0] = create(100.0d, 50.0d, 'm');
+        equations[1] = create(50.0d, 2.0d, 'd');
+        equations[2] = create(25.0d, 15.0d, 'a');
+        equations[3] = create(75.0d, 15.0d, 's');
+        for (var equation : equations) {
+            equation.execute();
+            System.out.println(equation.result);
         }
-        for (var result : results) {
-            System.out.println(result);
-        }
+    }
+
+    private static MathEquation create(double leftValue, double rightValue, char opCode) {
+        MathEquation equation = new MathEquation();
+        equation.leftValue = leftValue;
+        equation.rightValue = rightValue;
+        equation.opCode = opCode;
+        return equation;
     }
 
     private static void handleCommandLine(String[] args) {
