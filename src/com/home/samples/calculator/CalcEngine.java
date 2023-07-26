@@ -29,10 +29,24 @@ public class CalcEngine {
         for (var equation : equations) {
             if (equations.length <= MathEquation.limit) {
                 equation.execute();
-                System.out.println(equation.result);
+                System.out.println(equation.getResult());
             }
         }
         System.out.println("Average calculation result is = " + MathEquation.getAverageResult());
+        System.out.println();
+        System.out.println("Using execute overloads");
+        System.out.println();
+        MathEquation equationOverload = new MathEquation('d');
+        double leftDouble = 9.0d;
+        double rightDouble = 4.0d;
+        equationOverload.execute(leftDouble, rightDouble);
+        System.out.println(equationOverload.getResult());
+
+        // test the above overload with integers
+        int leftInt = 5;
+        int rightInt = 2;
+        equationOverload.execute(leftInt, rightInt);
+        System.out.println(equationOverload.getResult());
     }
 
     private static void handleCommandLine(String[] args) {

@@ -1,13 +1,20 @@
 package com.home.samples.calculator;
 
 public class MathEquation {
-    double leftValue;
-    double rightValue;
-    double result;
-    char opCode;
+    static int limit;
     private static int numberOfCalculations;
     private static double sumOfResults;
-    static int limit;
+
+    // initialization block
+    static {
+        CalculationLimit cl = new CalculationLimit();
+        limit = cl.getCalculationLimit();
+    }
+
+    private double leftValue;
+    private double rightValue;
+    private double result;
+    private char opCode;
 
     // initialization block
     // this rus before constructor call and after field initialization
@@ -20,12 +27,8 @@ public class MathEquation {
         // sumOfResults = 0.0d;
     }
 
-    static {
-        CalculationLimit cl = new CalculationLimit();
-        limit = cl.getCalculationLimit();
+    MathEquation() {
     }
-
-    MathEquation() {}
 
     MathEquation(char opCode) {
         this.opCode = opCode;
@@ -39,6 +42,35 @@ public class MathEquation {
 
     static double getAverageResult() {
         return sumOfResults / numberOfCalculations;
+    }
+
+    public double getRightValue() {
+        return rightValue;
+    }
+
+    public void setRightValue(double rightValue) {
+        this.rightValue = rightValue;
+    }
+
+    public double getLeftValue() {
+        return leftValue;
+    }
+
+    public void setLeftValue(double leftValue) {
+        this.leftValue = leftValue;
+    }
+
+    void execute(double leftValue, double rightValue) {
+        this.setLeftValue(leftValue);
+        this.setRightValue(rightValue);
+        this.execute();
+    }
+
+    void execute(int leftInt, int rightInt) {
+        this.leftValue = leftInt;
+        this.rightValue = rightInt;
+        execute();
+        result = (int) result;
     }
 
     void execute() {
@@ -62,5 +94,9 @@ public class MathEquation {
         }
         numberOfCalculations++;
         sumOfResults += result;
+    }
+
+    double getResult() {
+        return this.result;
     }
 }
