@@ -29,9 +29,13 @@ public class CalcEngine {
         for (var equation : equations) {
             if (equations.length <= MathEquation.limit) {
                 equation.execute();
-                System.out.println(equation.getResult());
+                System.out.println(equation);
             }
         }
+        useOverloads();
+    }
+
+    private static void useOverloads() {
         System.out.println("Average calculation result is = " + MathEquation.getAverageResult());
         System.out.println();
         System.out.println("Using execute overloads");

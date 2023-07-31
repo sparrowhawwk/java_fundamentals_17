@@ -44,6 +44,32 @@ public class MathEquation {
         return sumOfResults / numberOfCalculations;
     }
 
+    public String toString() {
+        char symbol = symbolFromOpCode();
+        StringBuilder sb = new StringBuilder(20);
+        sb.append(leftValue);
+        sb.append(" ");
+        sb.append(symbol);
+        sb.append(" ");
+        sb.append(rightValue);
+        sb.append(" = ");
+        sb.append(result);
+        return sb.toString();
+    }
+
+    public char symbolFromOpCode() {
+        char[] opCodes = {'m', 'd', 'a', 's'};
+        char[] symbols = {'*', '/', '+', '-'};
+        char symbol = ' ';
+        for (int i = 0; i < opCodes.length; i++) {
+            if (opCode == opCodes[i]) {
+                symbol = symbols[i];
+                break;
+            }
+        }
+        return symbol;
+    }
+
     public double getRightValue() {
         return rightValue;
     }
