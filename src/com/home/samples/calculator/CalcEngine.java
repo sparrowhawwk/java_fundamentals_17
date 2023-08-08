@@ -73,8 +73,11 @@ public class CalcEngine {
         char opCode = getOpCodeFromString(inputParts[0]);
         double leftVal = getDoubleFromString(inputParts[1]);
         double rightVal = getDoubleFromString(inputParts[2]);
-        double result = execute(leftVal, rightVal, opCode);
-        displayResult(opCode, leftVal, rightVal, result);
+        // double result = execute(leftVal, rightVal, opCode);
+        // displayResult(opCode, leftVal, rightVal, result);
+        MathEquation equation = new MathEquation(opCode, leftVal, rightVal);
+        equation.execute();
+        System.out.println(equation);
     }
 
     private static void displayResult(char opCode, double leftVal, double rightVal, double result) {
@@ -121,11 +124,16 @@ public class CalcEngine {
     private static double getDoubleFromString(String numberName) {
         String[] numberNames = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
         double d = 0.0d;
+        boolean isValueSet = false;
         for (int i = 0; i < numberNames.length; i++) {
             if (numberName.equals(numberNames[i])) {
                 d += i;
+                isValueSet = true;
                 break;
             }
+        }
+        if (!isValueSet) {
+            d = Double.parseDouble(numberName);
         }
         return d;
     }
